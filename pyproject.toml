@@ -1,0 +1,14 @@
+[project]
+name = "diecastor"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi[standard]>=0.128.0",
+    "httpx>=0.28.1",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.11.0",
+    "pytest>=8.4.2",
+    "sqlalchemy>=2.0.45",
+]
