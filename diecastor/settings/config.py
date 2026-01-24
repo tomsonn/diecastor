@@ -15,7 +15,7 @@ class DatabaseSettings(BaseSettings):
     """Configuration for the database."""
     host: str
     port: str
-    user: str
+    username: str
     password: str
     database: str
 
@@ -25,5 +25,6 @@ class DatabaseSettings(BaseSettings):
 
     model_config = SettingsConfigDict(
         env_file=".env",
-        env_file_encoding="utf-8"
+        env_file_encoding="utf-8",
+        env_prefix="DB_"
     )
