@@ -1,7 +1,6 @@
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
 from fastapi import FastAPI
-import sqlalchemy
 from starlette.responses import JSONResponse
 
 from diecastor.db.engine import Database, DatabaseDependency
