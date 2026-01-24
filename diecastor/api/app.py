@@ -1,9 +1,10 @@
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
 from fastapi import FastAPI
+import sqlalchemy
 from starlette.responses import JSONResponse
 
-from diecastor.db.engine import Database, DatabaseSessionDependency
+from diecastor.db.engine import Database, DatabaseDependency
 from diecastor.settings.config import DatabaseSettings
 from diecastor.settings.logger import get_logger
 
@@ -13,6 +14,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     db_settings = DatabaseSettings()
     logger = get_logger()
     database = Database(db_settings, logger)
+
+    app.state.database = database
     try:
         yield
     except Exception as e:
@@ -29,6 +32,6 @@ app = FastAPI(
 )
 
 
-@app.route("/ping")
-def ping(database_dependency: DatabaseSessionDependency) -> JSONResponse:
+@app.get("/ping")
+async def ping(database_dependency: DatabaseDependency) -> JSONResponse:
     return JSONResponse({"response": "pong"})
