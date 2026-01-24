@@ -72,7 +72,6 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
-    print(f"dns url: {get_dns(USE_TEST_DB)}")
     configuration = config.get_section(config.config_ini_section, {})
     configuration["sqlalchemy.url"] = get_dns(USE_TEST_DB)
     connectable = engine_from_config(
